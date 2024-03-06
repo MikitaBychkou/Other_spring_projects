@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+    <bean id="classicalMusic"
+          class="home_study.ClassicalMusic">
+    </bean>
+    <bean id="rockMusic"
+          class="home_study.RockMusic">
+    </bean>
+    <bean id="jazzMusic"
+          class="home_study.JazzMusic">
+    </bean>
+
+<!--    <bean id="musicPlayer"
+          class="home_study.java.MusicPlayer">
+        <property name="music" ref="musicBean"/> тут name это названий сеттера, только без Set и с первой маленькой буквой.
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean>-->
+    <bean id="musicPlayer"
+          class="home_study.MusicPlayer">
+        <property name="musicList">
+            <list>
+                <ref bean="classicalMusic"/>
+                <ref bean="rockMusic"/>
+                <ref bean="jazzMusic"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>
